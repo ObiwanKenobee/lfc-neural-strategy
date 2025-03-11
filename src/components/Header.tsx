@@ -1,19 +1,25 @@
 
 import { cn } from "@/lib/utils";
 import { Brain, ChartLine, Search, Target } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 interface HeaderProps {
   className?: string;
 }
 
 const Header = ({ className }: HeaderProps) => {
+  const location = useLocation();
+  const path = location.pathname;
+  
   return (
     <header className={cn("w-full py-2 border-b", className)}>
       <div className="container flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="bg-liverpool-red p-2 rounded">
-            <Brain className="h-6 w-6 text-white" />
-          </div>
+          <Link to="/">
+            <div className="bg-liverpool-red p-2 rounded">
+              <Brain className="h-6 w-6 text-white" />
+            </div>
+          </Link>
           <div>
             <h1 className="text-xl font-bold flex items-center">
               LFC <span className="text-liverpool-red ml-1">NeuralX</span>
@@ -23,9 +29,24 @@ const Header = ({ className }: HeaderProps) => {
         </div>
         
         <nav className="hidden md:flex space-x-6">
-          <NavItem icon={<ChartLine className="h-4 w-4 mr-1" />} label="Performance" active />
-          <NavItem icon={<Target className="h-4 w-4 mr-1" />} label="Tactics" />
-          <NavItem icon={<Search className="h-4 w-4 mr-1" />} label="Scouting" />
+          <NavItem 
+            icon={<ChartLine className="h-4 w-4 mr-1" />} 
+            label="Performance" 
+            to="/"
+            active={path === "/"} 
+          />
+          <NavItem 
+            icon={<Target className="h-4 w-4 mr-1" />} 
+            label="Tactics" 
+            to="/tactics-scouting"
+            active={path === "/tactics-scouting"} 
+          />
+          <NavItem 
+            icon={<Search className="h-4 w-4 mr-1" />} 
+            label="Scouting" 
+            to="/tactics-scouting"
+            active={path === "/tactics-scouting"} 
+          />
         </nav>
         
         <div className="flex items-center gap-2">
@@ -38,10 +59,20 @@ const Header = ({ className }: HeaderProps) => {
   );
 };
 
-const NavItem = ({ icon, label, active = false }: { icon: React.ReactNode; label: string; active?: boolean }) => {
+const NavItem = ({ 
+  icon, 
+  label, 
+  to,
+  active = false 
+}: { 
+  icon: React.ReactNode; 
+  label: string; 
+  to: string;
+  active?: boolean;
+}) => {
   return (
-    <a
-      href="#"
+    <Link
+      to={to}
       className={cn(
         "flex items-center text-sm font-medium transition-colors hover:text-liverpool-red",
         active ? "text-liverpool-red" : "text-muted-foreground"
@@ -49,7 +80,7 @@ const NavItem = ({ icon, label, active = false }: { icon: React.ReactNode; label
     >
       {icon}
       {label}
-    </a>
+    </Link>
   );
 };
 
