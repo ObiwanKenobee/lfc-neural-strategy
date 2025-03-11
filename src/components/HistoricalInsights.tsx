@@ -1,8 +1,7 @@
-
 import DashboardCard from "./DashboardCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, Search, ArrowRight, UserPlus, Award, Trophy, Star } from "lucide-react";
+import { TrendingUp, Search, ArrowRight, UserPlus, Award, Trophy, Star, Shield } from "lucide-react";
 
 const HistoricalInsights = () => {
   return (
