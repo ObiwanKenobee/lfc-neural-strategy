@@ -2,7 +2,7 @@
 import DashboardCard from "./DashboardCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, Search, ArrowRight } from "lucide-react";
+import { TrendingUp, Search, ArrowRight, UserPlus, Award, Trophy, Star } from "lucide-react";
 
 const HistoricalInsights = () => {
   return (
@@ -140,6 +140,93 @@ const HistoricalInsights = () => {
                   <div className="mt-3 pt-3 border-t text-xs">
                     <p className="font-medium text-liverpool-red">AI Analysis:</p>
                     <p className="mt-1">Perfect tactical profile match for Liverpool's system with high development ceiling. Similar early trajectory to Xabi Alonso.</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <h3 className="font-medium mt-6 mb-3 flex items-center gap-2">
+              <UserPlus className="text-liverpool-red h-5 w-5" />
+              Breakthrough Talents 2025
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                {
+                  name: "Malick Yalcouye",
+                  position: "Defensive Midfielder",
+                  age: 19,
+                  club: "Brighton (on loan at Sturm Graz)",
+                  matchIndex: 89,
+                  icon: <Award className="h-4 w-4 text-amber-500" />,
+                  comparison: "N'Golo Kante",
+                  strengths: ["Ball-winning", "Stamina", "Tactical Awareness"],
+                  background: "Trained at ASEC Mimosas academy, joined Brighton from IFK Goteborg for £6 million. Impressive performances during Sturm Graz loan."
+                },
+                {
+                  name: "Findlay Curtis",
+                  position: "Central Midfielder",
+                  age: 19,
+                  club: "Rangers",
+                  matchIndex: 85,
+                  icon: <Trophy className="h-4 w-4 text-amber-500" />,
+                  comparison: "Graeme Souness",
+                  strengths: ["Composure", "Vision", "Technical Ability"],
+                  background: "Progressed through Rangers' youth system. Made first-team debut in January 2025 with an assist, showing maturity beyond his years."
+                },
+                {
+                  name: "Kim Myung-jun",
+                  position: "Striker",
+                  age: 19,
+                  club: "Jong Genk",
+                  matchIndex: 91,
+                  icon: <Star className="h-4 w-4 text-amber-500" />,
+                  comparison: "Son Heung-min",
+                  strengths: ["Agility", "Finishing", "Tactical Intelligence"],
+                  background: "South Korean youth international who represented his country at the U-17 World Cup. Joined Jong Genk in Belgium where his scoring prowess has drawn attention."
+                },
+                {
+                  name: "Tobias Slotsager",
+                  position: "Centre-back",
+                  age: 19,
+                  club: "Hellas Verona",
+                  matchIndex: 87,
+                  icon: <Shield className="h-4 w-4 text-amber-500" />,
+                  comparison: "Daniel Agger",
+                  strengths: ["Tactical Intelligence", "Ball-playing", "Versatility"],
+                  background: "Danish defender who transitioned from a forward role. Performances for OB led to a Serie A move where his intelligence and technical abilities have been noted."
+                }
+              ].map((player, index) => (
+                <div key={index} className="border rounded-md overflow-hidden bg-white">
+                  <div className="bg-liverpool-red/10 p-3 border-b flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      {player.icon}
+                      <h4 className="font-semibold">{player.name}</h4>
+                    </div>
+                    <div className="bg-liverpool-red text-white text-xs font-bold h-7 w-7 rounded-full flex items-center justify-center">
+                      {player.matchIndex}%
+                    </div>
+                  </div>
+                  
+                  <div className="p-3">
+                    <p className="text-xs text-muted-foreground">{player.position} • {player.age} years • {player.club}</p>
+                    
+                    <div className="mt-3 space-y-2">
+                      <p className="text-xs font-medium">Key Strengths:</p>
+                      <div className="flex flex-wrap gap-1">
+                        {player.strengths.map((strength, i) => (
+                          <Badge key={i} variant="secondary" className="text-xs">{strength}</Badge>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="mt-3 pt-3 border-t text-xs">
+                      <div className="flex justify-between items-center mb-1">
+                        <p className="font-medium text-liverpool-red">AI Analysis:</p>
+                        <Badge variant="outline" className="text-xs bg-amber-50">Style: {player.comparison}</Badge>
+                      </div>
+                      <p className="mt-1">{player.background}</p>
+                    </div>
                   </div>
                 </div>
               ))}
